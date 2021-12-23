@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/Cell.gd" type="Script" id=1]
+[ext_resource path="res://assets/rooms/brick/Floor.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://assets/rooms/brick/Floor.tres" type="Material" id=3]
+[ext_resource path="res://assets/rooms/brick/Wall.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://assets/rooms/brick/Wall.png" type="Texture" id=5]
+[ext_resource path="res://assets/rooms/brick/WallNormals.png" type="Texture" id=6]
+
+
+
+
+
+[sub_resource type="SpatialMaterial" id=1]
+params_diffuse_mode = 1
+params_specular_mode = 4
+albedo_texture = ExtResource( 5 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 6 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.5, 0.5, 0.5 )
+
+[node name="Cell" type="Area"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="TopFace" type="MeshInstance" parent="."]
+transform = Transform( -1, 8.74228e-008, 0, -8.74228e-008, -1, 0, 0, 0, 1, 0, 2, 0 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 3 )
+
+[node name="NorthFace" type="MeshInstance" parent="."]
+transform = Transform( -1, 4.37114e-008, -4.37114e-008, -4.37114e-008, 4.37114e-008, 1, 4.37114e-008, 1, -4.37114e-008, 0, 1, -1 )
+mesh = ExtResource( 4 )
+material/0 = SubResource( 1 )
+
+[node name="EastFace" type="MeshInstance" parent="."]
+transform = Transform( -4.37114e-008, -1, 0, -4.37114e-008, 1.91069e-015, 1, -1, 4.37114e-008, -4.37114e-008, 1, 1, 0 )
+mesh = ExtResource( 4 )
+material/0 = SubResource( 1 )
+
+[node name="SouthFace" type="MeshInstance" parent="."]
+transform = Transform( 1, -4.37114e-008, 4.37114e-008, -4.37114e-008, 1.31134e-007, 1, -4.37114e-008, -1, 1.31134e-007, 0, 1, 1 )
+mesh = ExtResource( 4 )
+material/0 = SubResource( 1 )
+
+[node name="WestFace" type="MeshInstance" parent="."]
+transform = Transform( 4.37114e-008, 1, -8.74228e-008, -4.37114e-008, 8.74228e-008, 1, 1, -4.37114e-008, 4.37114e-008, -1, 1, 0 )
+mesh = ExtResource( 4 )
+material/0 = SubResource( 1 )
+
+[node name="BottomFace" type="MeshInstance" parent="."]
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 2 )
